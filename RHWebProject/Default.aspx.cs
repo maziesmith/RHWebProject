@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RHWebProject.DAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -31,6 +32,15 @@ namespace RHWebProject
             DateTime dateOfBirth = Convert.ToDateTime(TextBox3.Text);
             string emailAddress = TextBox4.Text;
 
+
+            // insert
+            using (var db = new PeopleEntities())
+            {
+                var people = db.Set<Person>();
+                people.Add(new Person {FirstName = firstName, LastName =lastName, DateOfBirth = dateOfBirth, EmailAddress = emailAddress});
+                db.SaveChanges();
+            }
+
         }
 
         protected void CustomValidator1_ServerValidate(object source, ServerValidateEventArgs args)
@@ -45,5 +55,6 @@ namespace RHWebProject
                 args.IsValid = false;
             }
         }
+
     }
 }
