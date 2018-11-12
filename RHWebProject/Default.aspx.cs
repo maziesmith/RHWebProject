@@ -11,7 +11,39 @@ namespace RHWebProject
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Label1.Text = "";
+        }
 
+        protected void submitbtnId_Click(object sender, EventArgs e)
+        {
+            if (Page.IsValid)
+            {
+                Label1.Text = "Page is valid.";
+            }
+            else
+            {
+                Label1.Text = "Page is not valid.";
+            }
+
+            ScriptManager.RegisterOnSubmitStatement(this, this.GetType(),"myHandlerKey", "clientSideFunction()");
+            string firstName = TextBox1.Text;
+            string lastName = TextBox2.Text;
+            DateTime dateOfBirth = Convert.ToDateTime(TextBox3.Text);
+            string emailAddress = TextBox4.Text;
+
+        }
+
+        protected void CustomValidator1_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            try
+            {
+                DateTime.ParseExact(args.Value, "m/d/yyyy", System.Globalization.DateTimeFormatInfo.InvariantInfo);
+                args.IsValid = true;
+            }
+            catch
+            {
+                args.IsValid = false;
+            }
         }
     }
 }
