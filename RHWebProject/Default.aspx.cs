@@ -19,28 +19,24 @@ namespace RHWebProject
         {
             if (Page.IsValid)
             {
-                Label1.Text = "Page is valid.";
+                string firstName = TextBox1.Text;
+                string lastName = TextBox2.Text;
+                DateTime dateOfBirth = Convert.ToDateTime(TextBox3.Text);
+                string emailAddress = TextBox4.Text;
+                
+                // insert
+                using (var db = new PeopleEntities())
+                {
+                    var people = db.Set<Person>();
+                    people.Add(new Person { FirstName = firstName, LastName = lastName, DateOfBirth = dateOfBirth, EmailAddress = emailAddress });
+                    db.SaveChanges();
+                }
+                Response.Redirect("Records.aspx");
             }
             else
             {
                 Label1.Text = "Page is not valid.";
             }
-
-            ScriptManager.RegisterOnSubmitStatement(this, this.GetType(),"myHandlerKey", "clientSideFunction()");
-            string firstName = TextBox1.Text;
-            string lastName = TextBox2.Text;
-            DateTime dateOfBirth = Convert.ToDateTime(TextBox3.Text);
-            string emailAddress = TextBox4.Text;
-
-
-            // insert
-            using (var db = new PeopleEntities())
-            {
-                var people = db.Set<Person>();
-                people.Add(new Person {FirstName = firstName, LastName =lastName, DateOfBirth = dateOfBirth, EmailAddress = emailAddress});
-                db.SaveChanges();
-            }
-
         }
 
         protected void CustomValidator1_ServerValidate(object source, ServerValidateEventArgs args)

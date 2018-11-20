@@ -4,25 +4,22 @@
     <script type="text/javascript" src="//code.jquery.com/jquery-1.10.2.js"></script>
         <h2>Please enter the details</h2>
     <p>&nbsp;</p>
-    <div>
-        <p class="lead">First Name:<asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+    <div class="lead">
+        First Name:<asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="TextBox1" Display="Dynamic" ErrorMessage="First Name is Required">*</asp:RequiredFieldValidator>
-        </p>
-        <p class="lead">Last Name:<asp:TextBox ID="TextBox2" runat="server"></asp:TextBox></p>
-        <p class="lead">Date of Birth:<asp:TextBox ID="TextBox3" runat="server"></asp:TextBox><asp:CustomValidator ID="CustomValidator1" runat="server" ControlToValidate="TextBox3" Display="Dynamic" ErrorMessage="Enter a date in the format m/d/yyyy" OnServerValidate="CustomValidator1_ServerValidate" ClientValidationFunction="validateDate">Invalid date format (requires m/d/yyyy).</asp:CustomValidator>
-            </p>
-        <p class="lead">Email Address:<asp:TextBox ID="TextBox4" runat="server"></asp:TextBox></p>
-        </div>
-        <asp:Button ID="submitbtnId" OnClick="submitbtnId_Click" Text="Submit Now" runat="server"/>
         <br />
-        <asp:Label ID="Label1" runat="server"></asp:Label>
+        Last Name:<asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+        <br />
+        Date of Birth:<asp:TextBox ID="TextBox3" runat="server"></asp:TextBox>
+            <asp:CustomValidator ID="CustomValidator1" runat="server" ControlToValidate="TextBox3" Display="Dynamic" ErrorMessage="Enter a date in the format m/d/yyyy" OnServerValidate="CustomValidator1_ServerValidate" ClientValidationFunction="validateDate">Invalid date format (requires m/d/yyyy).</asp:CustomValidator>
+        <br />
+        Email Address:<asp:TextBox ID="TextBox4" runat="server"></asp:TextBox>
+    </div>
+    <asp:Button ID="submitbtnId" OnClick="submitbtnId_Click" Text="Submit Now" runat="server"/>
+    <br />
+    <asp:Label ID="Label1" runat="server"></asp:Label>
     
     <script type="text/javascript">
-       function clientSideFunction()
-       {
-
-            alert('You Submitted!');
-       }
         function validateDate(oSrc, args) {
             var iDay, iMonth, iYear;
             var arrValues;
@@ -42,4 +39,4 @@
             return true;
         }
     </script>
-    </asp:Content>
+</asp:Content>

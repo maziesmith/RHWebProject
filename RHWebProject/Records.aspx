@@ -10,7 +10,5 @@
             <asp:BoundField DataField="DateOfBirth" HeaderText="Date of Birth" DataFormatString="{0:d}" />
             <asp:BoundField DataField="EmailAddress" HeaderText="Email Address" />
         </Columns>
-
     </asp:GridView>
-
 </asp:Content>
